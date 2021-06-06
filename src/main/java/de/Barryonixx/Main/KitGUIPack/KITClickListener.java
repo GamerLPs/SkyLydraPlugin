@@ -52,7 +52,6 @@ public class KITClickListener implements Listener {
         }
     }
 
-
     /*
     *
     * sek = ms/1000;
