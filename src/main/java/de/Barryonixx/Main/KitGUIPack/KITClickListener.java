@@ -27,11 +27,20 @@ public class KITClickListener implements Listener {
     * Also du kannst jetzt hier normal weiter coden....wenn du fertig bist, musst du es einfach nur noch
     * Auf github abspeichern, dazu gibts einen Button hier, den ich auch schnell noch suchen muss... nochmal woo
     *
+    *
     * Also du machst dein Coding zeug hier...
     * Dann oben auf Git gehen
     * Dort auf Commit
     * Dann Links eingeben was du geändert hast / gemacht hast, oder was du halt willst
     * und dann auf Commit gehen
+    *
+    * und dort oben links siehst du alle Datein in der du eine Änderung gemacht hast...
+    * bei uns ist das jetzt nur hier KitClickListener, weil wir hier die ganze zeit schreiben...
+    * Dort musst du alle markieren...Wenn du da mehrere hast, kannst du auch sagen, ich will alle speichern, außer
+    * das eine, dann das einfach nicht markieren und wenn du was änderst wie klappt das dann?Ich mache dann das gleiche
+    * wie bei dir hier, nur das bei mir das nicht direkt gespeichert wird, sondern du kriegst dann eine "Pull Request",
+    * die du dann bestätigen musst...Also zumindest sollte das so sein, aber wir sollten es lieber gleich noch ausprobieren
+    * dann lets goo
     *
     * */
     @EventHandler
