@@ -81,6 +81,7 @@ public class MainScoreBoard extends ScoreboardBuilder{
         formattedNumber = formattedNumber + suffix.charAt(power/3);
         return formattedNumber.length()>4 ?  formattedNumber.replaceAll("\\.[0-9]+", "") : formattedNumber;
     }
+
     private void run(){
         new BukkitRunnable(){
 
