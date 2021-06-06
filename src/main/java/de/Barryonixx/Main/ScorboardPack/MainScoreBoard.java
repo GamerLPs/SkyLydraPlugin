@@ -79,7 +79,7 @@ public class MainScoreBoard extends ScoreboardBuilder{
                         setDisplayName("§4§lS§c§lky§7-§4§lL§c§lydra");
 
                         setScore("§7§o        " + player.getWorld().getName(), 9);
-                        setScore("§e   >>" + getKillsDeathString(player), 6);
+                        setScore("§7   » §e" + getKillsDeathString(player), 6);
                         setScore("§7   » §e" + CoinSystem.getEco().getBalance(player), 3);
                         setScore("§7   » §e" + dtf.format(now), 0);
                         break;
