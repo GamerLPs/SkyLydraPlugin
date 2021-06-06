@@ -1,9 +1,11 @@
 package de.Barryonixx.Main.ScorboardPack;
 
 import de.Barryonixx.Main.CoinSystem.CoinSystem;
+import de.Barryonixx.Main.FileManager;
 import de.Barryonixx.Main.SkyLydra;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -30,22 +32,38 @@ public class MainScoreBoard extends ScoreboardBuilder{
         setScore("§c " + player.getWorld().getName(), 9);
         setScore(ChatColor.DARK_AQUA.toString(), 8);
         setScore("§7 |  §aKills/Tode:", 7);
-        setScore("§e   >>Hier kommen die Tode/Kills", 6);
+        setScore("§e   >>" + getKillsDeathString(player), 6);
         setScore(ChatColor.YELLOW.toString(), 5);
         setScore("§7 |  §aCoins:" , 4);
         setScore("§7   >>" + CoinSystem.getEco().getBalance(player), 3);
         setScore(ChatColor.BLACK.toString(), 2);
         setScore("§7 |  §aUhrzeit: ", 1);
         setScore("§6   >>" + dtf.format(now), 0);
-
-
-
-        //TODO: Kills und TOD
     }
 
     @Override
     public void update() {
 
+    }
+
+    private String getKillsDeathString(Player player){
+        YamlConfiguration playerData = FileManager.playerData;
+
+        String s = "";
+        int kills = 0;
+        int tode = 0;
+
+        if(playerData.isSet("Kills." + player.getName())){
+            kills = playerData.getInt("Kills." + player.getName());
+        }
+
+        if(playerData.isSet("Tode." + player.getName())){
+            tode = playerData.getInt("Tode." + player.getName());
+        }
+
+        s = kills + " | " + tode;
+
+        return s;
     }
 
     private void run(){
@@ -61,7 +79,7 @@ public class MainScoreBoard extends ScoreboardBuilder{
                         setDisplayName("§4§lS§c§lky§7-§4§lL§c§lydra");
 
                         setScore("§7§o        " + player.getWorld().getName(), 9);
-                        setScore("§7   » §e0 | 0", 6);
+                        setScore("§e   >>" + getKillsDeathString(player), 6);
                         setScore("§7   » §e" + CoinSystem.getEco().getBalance(player), 3);
                         setScore("§7   » §e" + dtf.format(now), 0);
                         break;

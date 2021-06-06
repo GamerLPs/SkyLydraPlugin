@@ -169,12 +169,49 @@ public class ChatListener implements Listener {
         player.sendMessage("§7Du wurdest von §c"+killer.getName() + " §7gekillt.");
         killer.sendMessage("§7Du hast §c" + player.getName() + " §7gekillt.");
 
+        YamlConfiguration playerData = FileManager.playerData;
+
+        int kills = 0;
+        int tode = 0;
+
+
+
+        /*
+        * Wenn Tode / Kills nicht gesetzt ist wird 0 als wert übernommen,
+        * ansonsten der Wert der bereits gesetzt ist.
+        * */
+        if(playerData.isSet("Kills." + killer.getName())){
+            kills = playerData.getInt("Kills." + killer.getName());
+        }
+
+        if(playerData.isSet("Tode." + player.getName())){
+            tode = playerData.getInt("Tode." + player.getName());
+        }
+
+        tode++;
+        kills++;
+
+        System.out.println(playerData.isSet("Tode." + player.getName()));
+        System.out.println(tode);
+
+        playerData.set("Kills." + killer.getName(), kills);
+        playerData.set("Tode." + player.getName(), tode);
+
+        FileManager.saveAllFiles();
+
         if(CoinSystem.getEco() == null){
             return;
         }
 
         CoinSystem.getEco().depositPlayer(killer, 25);
         killer.sendMessage("§8» §7Du hast §625 Coins §7erhalten!");
+    }
+
+    @EventHandler
+    public void onRespawn(PlayerRespawnEvent event){
+        Player player = event.getPlayer();
+
+        new MainScoreBoard(player);
     }
 
     @EventHandler
