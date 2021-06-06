@@ -12,10 +12,12 @@ public class FileManager {
     public static File cfgFile = new File(folder, "config.yml");
     public static File friendFile = new File(folder, "friends.yml");
     public static File cfgcooldown = new File(folder, "cooldowns.yml");
+    public static File playerDataFile = new File(folder, "playerdata.yml");
 
     public static YamlConfiguration friends;
     public static YamlConfiguration cfg;
     public static YamlConfiguration cfgC;
+    public static YamlConfiguration playerData;
 
     public static void setup(){
         if(!folder.exists()){
@@ -45,6 +47,14 @@ public class FileManager {
             }
         }
 
+        if(!playerDataFile.exists()){
+            try{
+                playerDataFile.createNewFile();
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+        }
+
 
         if(cfgcooldown.exists()){
             System.out.println("Datei gefunden");
@@ -60,6 +70,11 @@ public class FileManager {
             System.out.println("Datei gefunden");
             friends = YamlConfiguration.loadConfiguration(friendFile);
         }
+
+        if(playerDataFile.exists()){
+            System.out.println("Datei gefunden");
+            playerData = YamlConfiguration.loadConfiguration(playerDataFile);
+        }
     }
 
     public static void saveAllFiles(){
@@ -67,6 +82,7 @@ public class FileManager {
           cfg.save(cfgFile);
           friends.save(friendFile);
           cfgC.save(cfgcooldown);
+          playerData.save(playerDataFile);
       }catch (IOException e){
           e.printStackTrace();
       }

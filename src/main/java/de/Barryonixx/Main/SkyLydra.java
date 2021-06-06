@@ -55,8 +55,6 @@ public final class SkyLydra extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage(Data.prefix + "Wurde geladen & läuft nun.");
         Bukkit.getConsoleSender().sendMessage("");
-
-
     }
 
     @Override
@@ -65,7 +63,6 @@ public final class SkyLydra extends JavaPlugin {
         Bukkit.getConsoleSender().sendMessage("");
         Bukkit.getConsoleSender().sendMessage(Data.prefix + "Wurde deaktiviert & läuft nun nicht mehr.");
         Bukkit.getConsoleSender().sendMessage("");
-
     }
 
     public static SkyLydra getPlugin() {
