@@ -1,6 +1,5 @@
 package de.Barryonixx.Main.KitGUIPack;
 
-import com.sun.tools.javac.jvm.Items;
 import de.Barryonixx.Main.Data;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -20,7 +19,7 @@ public class KITClickListener implements Listener {
     public static HashMap<String, Long> respawn = new HashMap<>();//X
     public static HashMap<String, Long> spieler = new HashMap<>();//X
     public static HashMap<String, Long> champion = new HashMap<>();//X
-    public static HashMap<String, Long> hero = new HashMap<>();
+    public static HashMap<String, Long> hero = new HashMap<>();//X
     public static HashMap<String, Long> titan = new HashMap<>();
     public static HashMap<String, Long> deluxe = new HashMap<>();
     public static HashMap<String, Long> thor = new HashMap<>();
