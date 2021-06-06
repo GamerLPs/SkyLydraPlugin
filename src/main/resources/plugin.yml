@@ -1,0 +1,74 @@
+name: SkyLydra
+version: ${project.version}
+main: de.Barryonixx.Main.SkyLydra
+api-version: 1.16
+
+commands:
+  kits:
+  discord:
+    aliases:
+      - dc
+  vote:
+  claim:
+  heal:
+    aliases:
+      - heilen
+  freebuild:
+  friend:
+  report:
+  giveVoteKey:
+  npc:
+  shop:
+  coins:
+  wartung:
+  msg:
+  replay:
+    aliases:
+      - r
+  teleport:
+    aliases:
+      - tp
+  tphere:
+    aliases:
+      - tph
+  clearchat:
+    aliases:
+      - cc
+  kick:
+  day:
+    aliases:
+      - tag
+  night:
+    aliases:
+      - nacht
+  gamemode:
+    aliases:
+      - gm
+  müll:
+    aliases:
+      - Mülleimer
+  giveall:
+  clearinventory:
+    aliases:
+      - ci
+      - clear
+      - cleari
+      - clean
+  scull:
+    aliases:
+      - kopf
+  vanish:
+    aliases:
+      - v
+  globalmute:
+  broadcast:
+    aliases:
+      - bc
+  enderchest:
+    aliases:
+      - ec
+  hat:
+  gesucht:
+  sun:
+    aliases:
+      - sonne
