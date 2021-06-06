@@ -75,6 +75,8 @@ public final class SkyLydra extends JavaPlugin {
     // Commands Laden lassen
     public void loadCommands(){
         getCommand("das Ist ein TestCommand");
+
+
         getCommand("kits").setExecutor(new KitGUI());
         getCommand("discord").setExecutor(new DiscordCommand());
         getCommand("vote").setExecutor(new VoteCommand());
