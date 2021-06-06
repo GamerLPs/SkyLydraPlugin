@@ -30,7 +30,6 @@ public class MainScoreBoard extends ScoreboardBuilder{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
-
         setScore("§c " + player.getWorld().getName(), 9);
         setScore(ChatColor.DARK_AQUA.toString(), 8);
         setScore("§7 |  §aKills/Tode:", 7);
