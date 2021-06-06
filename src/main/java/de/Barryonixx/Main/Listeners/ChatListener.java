@@ -144,6 +144,19 @@ public class ChatListener implements Listener {
         if(!(player.getVelocity().getY() < 0)) return;
         if(!(player.getLocation().getY() < 30)) return;
 
+        int tode = 0;
+
+        YamlConfiguration playerData = FileManager.playerData;
+
+        if(playerData.isSet("Tode." + player.getName())){
+            tode = playerData.getInt("Tode." + player.getName());
+        }
+
+        tode++;
+
+        playerData.set("Tode." + player.getName(), tode);
+        FileManager.saveAllFiles();
+
         player.teleport(player.getWorld().getSpawnLocation());
     }
 
