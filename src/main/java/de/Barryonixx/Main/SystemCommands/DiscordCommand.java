@@ -24,7 +24,7 @@ public class DiscordCommand implements CommandExecutor {
                 TextComponent msg1 = new TextComponent(Data.prefix+ "Unser Discord-Server erreichst du hier.");
                 TextComponent msg2 = new TextComponent("§8                        ▪ §c§oKlick hier");
                 msg2.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§a§oKlick auf mich!").create()));
-                msg2.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/eEd7bsEE7R"));
+                msg2.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, "https://discord.gg/FTYFJyBNuT"));
 
                 player.spigot().sendMessage(ouu);
                 player.spigot().sendMessage(ouu);

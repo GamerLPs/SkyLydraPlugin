@@ -9,8 +9,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -30,13 +28,14 @@ public class MainScoreBoard extends ScoreboardBuilder{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
 
+
         setScore("§c " + player.getWorld().getName(), 9);
         setScore(ChatColor.DARK_AQUA.toString(), 8);
         setScore("§7 |  §aKills/Tode:", 7);
         setScore("§e   >>" + getKillsDeathString(player), 6);
         setScore(ChatColor.YELLOW.toString(), 5);
         setScore("§7 |  §aCoins:" , 4);
-        setScore("§7   >>" + formatValue(CoinSystem.getEco().getBalance(player)), 3);
+        setScore("§7   >>" + CoinSystem.getEco().getBalance(player), 3);
         setScore(ChatColor.BLACK.toString(), 2);
         setScore("§7 |  §aUhrzeit: ", 1);
         setScore("§6   >>" + dtf.format(now), 0);
@@ -67,20 +66,6 @@ public class MainScoreBoard extends ScoreboardBuilder{
         return s;
     }
 
-
-    public static String formatValue(double value) {
-        int power;
-        String suffix = " kmbt";
-        String formattedNumber = "";
-
-        NumberFormat formatter = new DecimalFormat("#,###.#");
-        power = (int)StrictMath.log10(value);
-        value = value/(Math.pow(10,(power/3)*3));
-        formattedNumber=formatter.format(value);
-        formattedNumber = formattedNumber + suffix.charAt(power/3);
-        return formattedNumber.length()>4 ?  formattedNumber.replaceAll("\\.[0-9]+", "") : formattedNumber;
-    }
-
     private void run(){
         new BukkitRunnable(){
 
@@ -95,7 +80,7 @@ public class MainScoreBoard extends ScoreboardBuilder{
 
                         setScore("§7§o        " + player.getWorld().getName(), 9);
                         setScore("§e   >>" + getKillsDeathString(player), 6);
-                        setScore("§7   » §e" + formatValue(CoinSystem.getEco().getBalance(player)), 3);
+                        setScore("§7   » §e" + CoinSystem.getEco().getBalance(player), 3);
                         setScore("§7   » §e" + dtf.format(now), 0);
                         break;
                 }
