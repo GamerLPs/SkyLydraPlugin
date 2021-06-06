@@ -23,7 +23,17 @@ public class KITClickListener implements Listener {
     public static HashMap<String, Long> deluxe = new HashMap<>();
     public static HashMap<String, Long> thor = new HashMap<>();
 
-
+    /*
+    * Also du kannst jetzt hier normal weiter coden....wenn du fertig bist, musst du es einfach nur noch
+    * Auf github abspeichern, dazu gibts einen Button hier, den ich auch schnell noch suchen muss... nochmal woo
+    *
+    * Also du machst dein Coding zeug hier...
+    * Dann oben auf Git gehen
+    * Dort auf Commit
+    * Dann Links eingeben was du geändert hast / gemacht hast, oder was du halt willst
+    * und dann auf Commit gehen
+    *
+    * */
     @EventHandler
     public void onKITS(InventoryClickEvent event){
         if(!(event.getWhoClicked() instanceof Player)) return;
