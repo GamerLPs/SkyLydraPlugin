@@ -4,6 +4,7 @@ import de.Barryonixx.Main.Data;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,26 +24,6 @@ public class KITClickListener implements Listener {
     public static HashMap<String, Long> deluxe = new HashMap<>();
     public static HashMap<String, Long> thor = new HashMap<>();
 
-    /*
-    * Also du kannst jetzt hier normal weiter coden....wenn du fertig bist, musst du es einfach nur noch
-    * Auf github abspeichern, dazu gibts einen Button hier, den ich auch schnell noch suchen muss... nochmal woo
-    *
-    *
-    * Also du machst dein Coding zeug hier...
-    * Dann oben auf Git gehen
-    * Dort auf Commit
-    * Dann Links eingeben was du geändert hast / gemacht hast, oder was du halt willst
-    * und dann auf Commit gehen
-    *
-    * und dort oben links siehst du alle Datein in der du eine Änderung gemacht hast...
-    * bei uns ist das jetzt nur hier KitClickListener, weil wir hier die ganze zeit schreiben...
-    * Dort musst du alle markieren...Wenn du da mehrere hast, kannst du auch sagen, ich will alle speichern, außer
-    * das eine, dann das einfach nicht markieren und wenn du was änderst wie klappt das dann?Ich mache dann das gleiche
-    * wie bei dir hier, nur das bei mir das nicht direkt gespeichert wird, sondern du kriegst dann eine "Pull Request",
-    * die du dann bestätigen musst...Also zumindest sollte das so sein, aber wir sollten es lieber gleich noch ausprobieren
-    * dann lets goo
-    *
-    * */
     @EventHandler
     public void onKITS(InventoryClickEvent event){
         if(!(event.getWhoClicked() instanceof Player)) return;
@@ -63,6 +44,9 @@ public class KITClickListener implements Listener {
                 case "§8▪ §7Kits: §8(§5§lC§7§lH§5§lA§7§lM§5§lP§7§lI§5§lO§7§lN§8)":
                     giveChampionKit(player);
                     break;
+                case "§8▪ §7Kits: §8(§a§lHERO§8)":
+                    giveHeroKit(player);
+                    break;
             }
 
         }
@@ -75,6 +59,65 @@ public class KITClickListener implements Listener {
     * std = ms/1000/60/60;
     * tag = ms/1000/60/60/24;
     * */
+
+    public void giveHeroKit(Player player){
+        long jetzt = System.currentTimeMillis();
+        if(hero.containsKey(player.getName())){
+            long benutzt = hero.get(player.getName());
+
+            int rest = (int) ((benutzt+24*1000*60*60)-jetzt);
+            if(rest > 0){
+                int std = rest/1000/60/60;
+                rest = rest-(std*1000*60*60);
+                int min = rest/1000/60;
+                rest = rest -(min*1000*60);
+                int sek =rest/1000;
+
+                player.sendMessage(KITS + "Bitte warte noch: §c"+std+"h §c" + min +"m §7und §c" + sek+"s");
+                player.closeInventory();
+                return;
+            }
+        }
+        hero.put(player.getName(), jetzt);
+
+        ItemStack schwert = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemMeta schwertM = schwert.getItemMeta();
+        schwertM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        schwert.setItemMeta(schwertM);
+        schwert.addEnchantment(Enchantment.FIRE_ASPECT, 1);
+        schwert.addEnchantment(Enchantment.KNOCKBACK, 2);
+        schwert.addEnchantment(Enchantment.LOOT_BONUS_MOBS ,2);
+        schwert.addEnchantment(Enchantment.DAMAGE_ALL, 4);
+
+        ItemStack bogen = new ItemStack(Material.BOW, 1);
+        ItemMeta bowM = bogen.getItemMeta();
+        bowM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        bogen.addEnchantment(Enchantment.ARROW_INFINITE, 1);
+        bogen.addEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
+
+        ItemStack essen = new ItemStack(Material.COOKED_BEEF, 64);
+
+        ItemStack perls = new ItemStack(Material.ENDER_PEARL, 6);
+
+        ItemStack helm = new ItemStack(Material.DIAMOND_HELMET, 1);
+        ItemMeta helmM = helm.getItemMeta();
+        helmM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        helm.setItemMeta(helmM);
+        helm.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+
+        ItemStack hemd = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+        ItemMeta hemdM = hemd.getItemMeta();
+        hemdM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        hemd.setItemMeta(hemdM);
+        hemd.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+
+        player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
+        player.getInventory().addItem(schwert, bogen, essen, perls,helm, hemd, hose, schuhe, opa);
+        player.sendMessage(KITS + "§7Kit §cHero §7ausgewählt");
+        player.closeInventory();
+    }
+
+    //Also fürs speichern einfach auf git dann Commit, und dann nochmal unten links auf commit
 
     private void giveChampionKit(Player player){
         long jetzt = System.currentTimeMillis();
