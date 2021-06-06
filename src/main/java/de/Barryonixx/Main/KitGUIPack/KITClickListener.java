@@ -1,5 +1,6 @@
 package de.Barryonixx.Main.KitGUIPack;
 
+import com.sun.tools.javac.jvm.Items;
 import de.Barryonixx.Main.Data;
 import org.bukkit.Material;
 import org.bukkit.Sound;
@@ -111,13 +112,25 @@ public class KITClickListener implements Listener {
         hemd.setItemMeta(hemdM);
         hemd.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
 
+        ItemStack hose = new ItemStack(Material.DIAMOND_LEGGINGS, 1);
+        ItemMeta hoseM = hose.getItemMeta();
+        hoseM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        hose.setItemMeta(hoseM);
+        hose.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+
+        ItemStack schuhe = new ItemStack(Material.DIAMOND_BOOTS, 1);
+        ItemMeta schuheM = schuhe.getItemMeta();
+        schuheM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+        schuhe.setItemMeta(schuheM);
+        schuhe.addEnchantment(Enchantment.PROTECTION_ENVIRONMENTAL, 4);
+
+        ItemStack opa = new ItemStack(Material.ENCHANTED_GOLDEN_APPLE, 4);
+
         player.playSound(player.getLocation(), Sound.ENTITY_EXPERIENCE_ORB_PICKUP, 5, 5);
         player.getInventory().addItem(schwert, bogen, essen, perls,helm, hemd, hose, schuhe, opa);
         player.sendMessage(KITS + "§7Kit §cHero §7ausgewählt");
         player.closeInventory();
     }
-
-    //Also fürs speichern einfach auf git dann Commit, und dann nochmal unten links auf commit
 
     private void giveChampionKit(Player player){
         long jetzt = System.currentTimeMillis();
