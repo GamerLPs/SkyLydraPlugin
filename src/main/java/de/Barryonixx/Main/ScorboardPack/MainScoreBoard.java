@@ -87,6 +87,7 @@ public class MainScoreBoard extends ScoreboardBuilder{
 
             @Override
             public void run() {
+
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
 
