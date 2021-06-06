@@ -231,7 +231,6 @@ public class ChatListener implements Listener {
 
     }
 
-    //PlayerJoinEvent?
     private boolean getNew(Player player){
         YamlConfiguration cfg = FileManager.cfg;
 

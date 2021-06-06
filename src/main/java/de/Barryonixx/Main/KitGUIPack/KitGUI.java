@@ -45,6 +45,12 @@ public class KitGUI implements CommandExecutor {
                 herom.setDisplayName("§8▪ §7Kits: §8(§a§lHERO§8)");
                 hero.setItemMeta(herom);
 
+                ItemStack deluxe = new ItemStack(Material.PLAYER_HEAD);
+                SkullMeta deluxem = (SkullMeta)deluxe.getItemMeta();
+                deluxem.setOwner("Bedrock");
+                deluxem.setDisplayName("§8▪ §7Kits: §8(§6§lD§e§lELUX§6§lE§8)");
+                deluxe.setItemMeta(deluxem);
+
                 ItemStack thor = new ItemStack(Material.PLAYER_HEAD);
                 SkullMeta thorm = (SkullMeta)thor.getItemMeta();
                 thorm.setOwner("Bedrock");
@@ -140,9 +146,9 @@ public class KitGUI implements CommandExecutor {
                 KITS.setItem(23, respawn);
                 KITS.setItem(24, spieler);
                 KITS.setItem(25, champion);
-                KITS.setItem(31, spieler);
-                KITS.setItem(32, champion);
-                KITS.setItem(33, hero);
+                KITS.setItem(31, champion);
+                KITS.setItem(32, hero);
+                KITS.setItem(33, deluxe);
                 KITS.setItem(34, thor);
                 player.openInventory(KITS);
             }

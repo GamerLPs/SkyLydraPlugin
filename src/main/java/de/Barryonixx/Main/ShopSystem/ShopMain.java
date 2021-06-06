@@ -207,7 +207,7 @@ public class ShopMain implements CommandExecutor, Listener {
         heroLore.add("§c   §8▪ §7/enderchest");
         heroLore.add("§c   §8▪ §7/kopf <Spieler>");
         heroLore.add("§c   §8▪ §7Fabrig schreiben.");
-        heroLore.add("§c   §8▪ §7Kit §8| §a&lHERO");
+        heroLore.add("§c   §8▪ §7Kit §8| §a§lHERO");
         heroMeta.setLore(heroLore);
         heroMeta.setDisplayName("§7Rang: §a§lHERO");
         hero.setItemMeta(heroMeta);
