@@ -95,7 +95,11 @@ public class MainScoreBoard extends ScoreboardBuilder{
 
                         setScore("§7§o        " + player.getWorld().getName(), 9);
                         setScore("§e   >>" + getKillsDeathString(player), 6);
-                        setScore("§7   » §e" + formatValue(CoinSystem.getEco().getBalance(player)), 3);
+                        try{
+                            setScore("§7   » §e" + formatValue(CoinSystem.getEco().getBalance(player)), 3);
+                        }catch(StringIndexOutOfBoundsException e){
+                            setScore("§7   » §e" + CoinSystem.getEco().getBalance(player), 3);
+                        }
                         setScore("§7   » §e" + dtf.format(now), 0);
                         break;
                 }
