@@ -11,6 +11,8 @@ import de.Barryonixx.Main.FreundeSystem.FriendListener;
 import de.Barryonixx.Main.Listeners.ChatListener;
 import de.Barryonixx.Main.ShopSystem.ShopMain;
 import de.Barryonixx.Main.report.ReportInventory;
+import de.Barryonixx.Main.superboots.SuperBootsCommand;
+import de.Barryonixx.Main.superboots.Superboots;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -71,6 +73,8 @@ public final class SkyLydra extends JavaPlugin {
 
     // Commands Laden lassen
     public void loadCommands(){
+        getCommand("boots").setExecutor(new SuperBootsCommand());
+        getCommand("boots").setTabCompleter(new SuperBootsCommand());
         getCommand("kits").setExecutor(new KitGUI());
         getCommand("discord").setExecutor(new DiscordCommand());
         getCommand("vote").setExecutor(new VoteCommand());
@@ -121,6 +125,7 @@ public final class SkyLydra extends JavaPlugin {
         pm.registerEvents(new FriendCommand(), this);
         pm.registerEvents(new ShopMain(), this);
         pm.registerEvents(new KITClickListener(), this);
+        pm.registerEvents(new Superboots(), this);
 
     }
 
