@@ -6,6 +6,8 @@ api-version: 1.16
 commands:
   bounty:
   boots:
+  rechte:
+  togglescoreboard:
   kits:
   discord:
     aliases:

@@ -1,6 +1,5 @@
 package de.Barryonixx.Main.KitGUIPack;
 
-import com.sun.tools.javac.jvm.Items;
 import de.Barryonixx.Main.Data;
 import org.bukkit.Material;
 import org.bukkit.Sound;
