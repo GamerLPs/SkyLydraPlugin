@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -229,19 +230,21 @@ public class CoinSystem implements CommandExecutor, Listener, TabCompleter {
             return;
         }
 
-        Player player = (Player) event.getWhoClicked();
+        if(event.getInventory().getType().equals(InventoryType.PLAYER)){
+            Player player = (Player) event.getWhoClicked();
 
-        if(!(event.getCurrentItem().getType().equals(Material.COAL) && event.getCurrentItem().getItemMeta().getDisplayName().contains("§8» §7Gutschein§c: §e"))){
-            return;
+            if(!(event.getCurrentItem().getType().equals(Material.COAL) && event.getCurrentItem().getItemMeta().getDisplayName().contains("§8» §7Gutschein§c: §e"))){
+                return;
+            }
+
+            int amount = Integer.parseInt(event.getCurrentItem().getItemMeta().getDisplayName().replace("§8» §7Gutschein§c: §e", "").replace(" Coins", ""));
+
+            if(amount <= 0){
+                return;
+            }
+
+            addMoney(player, amount);
         }
-
-        int amount = Integer.parseInt(event.getCurrentItem().getItemMeta().getDisplayName().replace("§8» §7Gutschein§c: §e", "").replace(" Coins", ""));
-
-        if(amount <= 0){
-            return;
-        }
-
-        addMoney(player, amount);
 
     }
 
