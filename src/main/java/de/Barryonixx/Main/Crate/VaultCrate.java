@@ -77,6 +77,12 @@ public class VaultCrate implements Listener, CommandExecutor {
     public void onInvClick(PlayerInteractEntityEvent event){
         if(event.getRightClicked() instanceof Villager){
             Villager villager = (Villager) event.getRightClicked();
+
+            if(!(villager.getCustomName().equals(VNAME))){
+                event.setCancelled(false);
+                return;
+            }
+
             if(isUsed){
                 event.getPlayer().sendMessage("§cBitte warte noch einen Augenblick!");
                 return;
