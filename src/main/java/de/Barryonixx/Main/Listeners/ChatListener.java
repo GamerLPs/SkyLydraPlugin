@@ -10,6 +10,7 @@ import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.command.Command;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -321,9 +322,23 @@ public class ChatListener implements Listener {
                     for(String s : sign.getLines()){
                         if(s.contains("/")){
                             if(s.contains(ChatColor.GREEN.toString())){
-                                s.replace(ChatColor.GREEN.toString(), "");
+                                try{
+                                    s.replace(ChatColor.GREEN.toString(), "");
+                                }catch(Exception e){
 
-                                player.chat(s);
+                                }
+
+                                try{
+                                    s.replace("§c", "");
+                                }catch(Exception e){
+
+                                }
+
+                                Command command = SkyLydra.getInstance().getCommand(s.replace("/", ""));
+
+                                if(command != null){
+                                    player.chat(s);
+                                }
                             }
                         }
                     }

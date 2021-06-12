@@ -10,6 +10,8 @@ import de.Barryonixx.Main.FreundeSystem.FriendCommand;
 import de.Barryonixx.Main.FreundeSystem.FriendListener;
 import de.Barryonixx.Main.Listeners.ChatListener;
 import de.Barryonixx.Main.ShopSystem.ShopMain;
+import de.Barryonixx.Main.kopfgeld.BountyCommand;
+import de.Barryonixx.Main.kopfgeld.BountyManager;
 import de.Barryonixx.Main.report.ReportInventory;
 import de.Barryonixx.Main.superboots.SuperBootsCommand;
 import de.Barryonixx.Main.superboots.Superboots;
@@ -22,6 +24,8 @@ public final class SkyLydra extends JavaPlugin {
 
     private static SkyLydra plugin;
     private static SkyLydra instance;
+
+    private BountyManager bountyManager;
 
     @Override
     public void onEnable() {
@@ -38,6 +42,8 @@ public final class SkyLydra extends JavaPlugin {
             System.out.println("Fehler beim Laden der Datei");
         }
         FileManager.saveAllFiles();
+
+        bountyManager = new BountyManager(FileManager.playerData);
 
         loadCommands();
         loadListeners();
@@ -73,6 +79,8 @@ public final class SkyLydra extends JavaPlugin {
 
     // Commands Laden lassen
     public void loadCommands(){
+        getCommand("bounty").setExecutor(new BountyCommand());
+        getCommand("bounty").setTabCompleter(new BountyCommand());
         getCommand("boots").setExecutor(new SuperBootsCommand());
         getCommand("boots").setTabCompleter(new SuperBootsCommand());
         getCommand("kits").setExecutor(new KitGUI());
@@ -126,7 +134,12 @@ public final class SkyLydra extends JavaPlugin {
         pm.registerEvents(new ShopMain(), this);
         pm.registerEvents(new KITClickListener(), this);
         pm.registerEvents(new Superboots(), this);
+        pm.registerEvents(new BountyCommand(), this);
 
+    }
+
+    public BountyManager getBountyManager(){
+        return bountyManager;
     }
 
     public static SkyLydra getInstance() {
