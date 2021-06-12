@@ -161,6 +161,7 @@ public class KITClickListener implements Listener {
             ItemStack bogen = new ItemStack(Material.BOW, 1);
             ItemMeta bowM = bogen.getItemMeta();
             bowM.setDisplayName("§8(§a§lHERO§8) §c▪ §7Kit");
+            bogen.setItemMeta(bowM);
             bogen.addEnchantment(Enchantment.ARROW_INFINITE, 1);
             bogen.addEnchantment(Enchantment.ARROW_KNOCKBACK, 2);
 
@@ -279,6 +280,7 @@ public class KITClickListener implements Listener {
             player.sendMessage(KITS + "§7Kit §cChampion §7ausgewählt");
             player.closeInventory();
         }else{
+            player.closeInventory();
             player.sendMessage(KITS + "Du besitzt den Rang §8(§5§lC§7§lH§5§lA§7§lM§5§lP§7§lI§5§lO§7§lN§8) §7nicht!");
         }
     }

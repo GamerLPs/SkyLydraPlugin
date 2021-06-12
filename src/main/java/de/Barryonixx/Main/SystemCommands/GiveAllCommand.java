@@ -17,7 +17,7 @@ public class GiveAllCommand implements CommandExecutor {
             sender.sendMessage(Data.prefix+"Du musst ein Spieler sein!");
         }
         Player p = (Player)sender;
-        if (!p.hasPermission("Skylydra.giveall"))
+        if (p.hasPermission("Skylydra.giveall"))
         {
             p.sendMessage(Data.prefix+Data.NoPerm);
             return true;

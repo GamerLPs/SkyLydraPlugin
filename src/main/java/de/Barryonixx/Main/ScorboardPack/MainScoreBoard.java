@@ -93,15 +93,15 @@ public class MainScoreBoard extends ScoreboardBuilder{
                 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
                 LocalDateTime now = LocalDateTime.now();
 
-                switch(animationID){
+                switch(animationID) {
                     case 0:
                         setDisplayName("§4§lS§c§lky§7-§4§lL§c§lydra");
 
                         setScore("§7§o        " + player.getWorld().getName(), 9);
-                        setScore("§e   >>" + getKillsDeathString(player), 6);
-                        try{
+                        setScore("§7   » §e" + getKillsDeathString(player), 6);
+                        try {
                             setScore("§7   » §e" + formatValue(CoinSystem.getEco().getBalance(player)), 3);
-                        }catch(StringIndexOutOfBoundsException e){
+                        } catch (StringIndexOutOfBoundsException e) {
                             setScore("§7   » §e" + CoinSystem.getEco().getBalance(player), 3);
                         }
                         setScore("§7   » §e" + dtf.format(now), 0);
