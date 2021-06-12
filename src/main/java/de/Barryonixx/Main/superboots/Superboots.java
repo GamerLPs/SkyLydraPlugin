@@ -56,6 +56,7 @@ public class Superboots implements Listener {
             }
         }
 
+
         if(player.getInventory().getBoots().getItemMeta().getDisplayName().equals(DEVELOPER_BOOTS_NAME) && player.getInventory().getBoots().getType().equals(Material.DIAMOND_BOOTS)){
             Block b = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
 
