@@ -216,38 +216,6 @@ public class CoinSystem implements CommandExecutor, Listener, TabCompleter {
         addMoney(player, amount);
     }
 
-    @EventHandler
-    public void onInvClick(InventoryClickEvent event){
-        if(!(event.getWhoClicked() instanceof Player)){
-            return;
-        }
-
-        if(event.getCurrentItem() == null){
-            return;
-        }
-
-        if(event.getView().getTitle().equals(VaultCrate.getVNAME())){
-            return;
-        }
-
-        if(event.getInventory().getType().equals(InventoryType.PLAYER)){
-            Player player = (Player) event.getWhoClicked();
-
-            if(!(event.getCurrentItem().getType().equals(Material.COAL) && event.getCurrentItem().getItemMeta().getDisplayName().contains("§8» §7Gutschein§c: §e"))){
-                return;
-            }
-
-            int amount = Integer.parseInt(event.getCurrentItem().getItemMeta().getDisplayName().replace("§8» §7Gutschein§c: §e", "").replace(" Coins", ""));
-
-            if(amount <= 0){
-                return;
-            }
-
-            addMoney(player, amount);
-        }
-
-    }
-
     private void removeMoney(Player target, int amount){
         eco.withdrawPlayer(target, amount);
     }
