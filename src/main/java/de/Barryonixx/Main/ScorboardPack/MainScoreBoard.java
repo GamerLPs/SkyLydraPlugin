@@ -68,17 +68,21 @@ public class MainScoreBoard extends ScoreboardBuilder{
         return s;
     }
 
-    public static String formatValue(double value) {
-        int power;
-        String suffix = " kmbt";
-        String formattedNumber = "";
+    public static String formatValue(double value) throws StringIndexOutOfBoundsException{
+        try{
+            int power;
+            String suffix = " kmbt";
+            String formattedNumber = "";
 
-        NumberFormat formatter = new DecimalFormat("#,###.#");
-        power = (int)StrictMath.log10(value);
-        value = value/(Math.pow(10,(power/3)*3));
-        formattedNumber=formatter.format(value);
-        formattedNumber = formattedNumber + suffix.charAt(power/3);
-        return formattedNumber.length()>4 ?  formattedNumber.replaceAll("\\.[0-9]+", "") : formattedNumber;
+            NumberFormat formatter = new DecimalFormat("#,###.#");
+            power = (int)StrictMath.log10(value);
+            value = value/(Math.pow(10,(power/3)*3));
+            formattedNumber=formatter.format(value);
+            formattedNumber = formattedNumber + suffix.charAt(power/3);
+            return formattedNumber.length()>4 ?  formattedNumber.replaceAll("\\.[0-9]+", "") : formattedNumber;
+        }catch(StringIndexOutOfBoundsException e){
+            return "" + value;
+        }
     }
 
     private void run(){

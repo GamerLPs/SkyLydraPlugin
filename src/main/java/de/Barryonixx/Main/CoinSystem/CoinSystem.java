@@ -12,8 +12,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -189,9 +187,6 @@ public class CoinSystem implements CommandExecutor, Listener, TabCompleter {
 
         return null;
     }
-
-
-
 
     @EventHandler
     public void onCoinClick(PlayerInteractEvent event){
