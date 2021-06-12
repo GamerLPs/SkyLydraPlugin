@@ -1,16 +1,21 @@
 package de.Barryonixx.Main.superboots;
 
+import de.Barryonixx.Main.SkyLydra;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
 public class Superboots implements Listener {
     public static final String SUPER_SPEED_BOOTS_NAME = "§eSpeed Boots";
     public static final String SUPER_JUMP_BOOTS_NAME = "§2Jump Boots";
+    public static final String DEVELOPER_BOOTS_NAME = "DevBoots";
 
 
     /*
@@ -40,6 +45,23 @@ public class Superboots implements Listener {
             if(player.hasPotionEffect(PotionEffectType.JUMP)){
                 player.removePotionEffect(PotionEffectType.JUMP);
             }
+        }
+
+        if(player.getInventory().getBoots().getItemMeta().getDisplayName().equals(DEVELOPER_BOOTS_NAME) && player.getInventory().getBoots().getType().equals(Material.DIAMOND_BOOTS)){
+            Block b = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
+
+            if(b.getType() != Material.AIR){
+                return;
+            }
+
+            b.setType(Material.ICE);
+
+            new BukkitRunnable(){
+                @Override
+                public void run() {
+                    b.setType(Material.AIR);
+                }
+            }.runTaskLater(SkyLydra.getInstance(), 60);
         }
     }
 

@@ -53,6 +53,15 @@ public class SuperBootsCommand implements CommandExecutor, TabCompleter {
                     player.getInventory().addItem(boot);
                     player.sendMessage("§aDu hast Super Speed Boots erhalten!");
                     break;
+                case "devboots":
+                    bootLore.add("Speziele Schuhe");
+                    bootMeta.setLore(bootLore);
+                    bootMeta.setDisplayName(Superboots.DEVELOPER_BOOTS_NAME);
+                    boot.setItemMeta(bootMeta);
+
+                    player.getInventory().addItem(boot);
+                    player.sendMessage("§aDu hast Developer Boots erhalten!");
+                    break;
             }
         }
         return false;
@@ -65,6 +74,7 @@ public class SuperBootsCommand implements CommandExecutor, TabCompleter {
         if(args.length == 1){
             complets.add("jump");
             complets.add("speed");
+            complets.add("devboots");
 
             return complets;
         }
