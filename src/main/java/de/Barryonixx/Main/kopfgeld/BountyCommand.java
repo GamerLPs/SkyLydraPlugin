@@ -105,6 +105,7 @@ public class BountyCommand implements CommandExecutor, TabCompleter, Listener {
                 return false;
             }
 
+
             boolean done = bountyManager.addBounty(target, player, amount);
 
             if(done){
