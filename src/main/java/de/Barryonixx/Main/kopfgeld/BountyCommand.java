@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -30,9 +31,6 @@ public class BountyCommand implements CommandExecutor, TabCompleter, Listener {
         if(!(sender instanceof Player)){
             return false;
         }
-
-        // /bounty add Player Amount
-        // /bounty remove Player
 
         Player player = (Player) sender;
 
@@ -102,11 +100,17 @@ public class BountyCommand implements CommandExecutor, TabCompleter, Listener {
                 return false;
             }
 
+            if(CoinSystem.getEco().getBalance(player) < amount){
+                player.sendMessage("§cDu hast nicht so viel geld!");
+                return false;
+            }
+
             boolean done = bountyManager.addBounty(target, player, amount);
 
-
             if(done){
+                target.sendMessage("§c Es wurde ein kopfgeld auf dich ausgeschrieben!" );
                 player.sendMessage("§aDu hast erfolgreich §6" + amount + " Coins Kopfgeld §aauf §6" + target.getName() + " §agesetzt!");
+
                 CoinSystem.getEco().withdrawPlayer(player, amount);
             }else{
                 player.sendMessage("§cEs ist etwas schief gelaufen!");
@@ -131,6 +135,13 @@ public class BountyCommand implements CommandExecutor, TabCompleter, Listener {
         }
     }
 
+    @EventHandler
+    public void onInvClick(InventoryClickEvent event){
+        if(event.getView().getTitle().equalsIgnoreCase(INVENTORY_TITLE)) {
+            event.setCancelled(true);
+        }
+    }
+
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if(!(sender instanceof Player)) return null;
@@ -142,8 +153,10 @@ public class BountyCommand implements CommandExecutor, TabCompleter, Listener {
 
             complets.add("add");
 
-            if(bountyManager.getBountys().size() > 0){
-                complets.add("remove");
+            if(bountyManager.getBountys() != null){
+                if(bountyManager.getBountys().size() > 0){
+                    complets.add("remove");
+                }
             }
 
             complets.add("list");
