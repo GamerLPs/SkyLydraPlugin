@@ -1,6 +1,7 @@
 package de.Barryonixx.Main.superboots;
 
 import de.Barryonixx.Main.SkyLydra;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -58,18 +59,36 @@ public class Superboots implements Listener {
         if(player.getInventory().getBoots().getItemMeta().getDisplayName().equals(DEVELOPER_BOOTS_NAME) && player.getInventory().getBoots().getType().equals(Material.DIAMOND_BOOTS)){
             Block b = player.getLocation().getBlock().getRelative(BlockFace.DOWN);
 
-            if(b.getType() != Material.AIR){
-                return;
+
+            Location location = b.getLocation();
+            int radius = 3;
+
+            for(int x = location.getBlockX() - radius; x <= location.getBlockX() + radius; x++) {
+                for(int z = location.getBlockZ() - radius; z <= location.getBlockZ() + radius; z++) {
+                    Block block = location.getWorld().getBlockAt(x, location.getBlockY(), z);
+
+                    if(player.isSneaking()){
+                        if(block.getType() == Material.ICE){
+                            block.setType(Material.AIR);
+                        }
+                    }else{
+                        if(block.getType() == Material.AIR){
+                            block.setType(Material.ICE);
+                        }
+                    }
+
+                    new BukkitRunnable(){
+                        @Override
+                        public void run() {
+                            if(block.getType() == Material.ICE){
+                                block.setType(Material.AIR);
+                            }
+                        }
+                    }.runTaskLater(SkyLydra.getInstance(), 60);
+                }
             }
 
-            b.setType(Material.ICE);
 
-            new BukkitRunnable(){
-                @Override
-                public void run() {
-                    b.setType(Material.AIR);
-                }
-            }.runTaskLater(SkyLydra.getInstance(), 60);
         }
     }
 
