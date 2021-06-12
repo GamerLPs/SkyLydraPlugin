@@ -313,6 +313,20 @@ public class ChatListener implements Listener {
                            }
                            player.openInventory(inventory);
                     }
+
+
+                    //Testen ob es ein Command ist
+                    //Wenn ja, den Command ausführen
+
+                    for(String s : sign.getLines()){
+                        if(s.contains("/")){
+                            if(s.contains(ChatColor.GREEN.toString())){
+                                s.replace(ChatColor.GREEN.toString(), "");
+
+                                player.chat(s);
+                            }
+                        }
+                    }
             }
 
         }
