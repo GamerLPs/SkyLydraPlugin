@@ -31,6 +31,14 @@ public class Superboots implements Listener {
     public void onMove(PlayerMoveEvent event){
         Player player = event.getPlayer();
 
+        if(player.getInventory().getBoots() == null){
+            return;
+        }
+
+        if(player.getInventory().getBoots().getItemMeta() == null){
+            return;
+        }
+
         if(player.getInventory().getBoots().getItemMeta().getDisplayName().equals(SUPER_SPEED_BOOTS_NAME) && player.getInventory().getBoots().getType().equals(Material.DIAMOND_BOOTS)){
             player.addPotionEffect(speed);
         }else{
