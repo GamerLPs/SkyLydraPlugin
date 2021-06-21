@@ -15,6 +15,8 @@ import de.Barryonixx.Main.kopfgeld.BountyManager;
 import de.Barryonixx.Main.report.ReportInventory;
 import de.Barryonixx.Main.superboots.SuperBootsCommand;
 import de.Barryonixx.Main.superboots.Superboots;
+import de.Barryonixx.Main.umfrage.Inventory30SecVotingCMD;
+import de.Barryonixx.Main.umfrage.UmfrageCMD;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -79,6 +81,9 @@ public final class SkyLydra extends JavaPlugin {
 
     // Commands Laden lassen
     public void loadCommands(){
+        getCommand("umfrage").setExecutor(new UmfrageCMD());
+        getCommand("30secumfrage").setExecutor(new Inventory30SecVotingCMD());
+        getCommand("30secumfrage").setExecutor(new Inventory30SecVotingCMD());
         getCommand("bounty").setExecutor(new BountyCommand());
         getCommand("bounty").setTabCompleter(new BountyCommand());
         getCommand("boots").setExecutor(new SuperBootsCommand());
@@ -135,6 +140,7 @@ public final class SkyLydra extends JavaPlugin {
         pm.registerEvents(new KITClickListener(), this);
         pm.registerEvents(new Superboots(), this);
         pm.registerEvents(new BountyCommand(), this);
+        pm.registerEvents(new UmfrageCMD(), this);
 
     }
 
