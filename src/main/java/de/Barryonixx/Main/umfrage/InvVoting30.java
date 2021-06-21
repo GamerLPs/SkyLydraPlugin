@@ -96,7 +96,7 @@ public class InvVoting30 {
                 }
                 cancel();
             }
-        }.runTaskLater(SkyLydra.getInstance(), 100);
+        }.runTaskLater(SkyLydra.getInstance(), 20 * 30);
     }
 
     public boolean hasPlayerVoted(Player player){
