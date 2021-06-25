@@ -4,6 +4,8 @@ main: de.Barryonixx.Main.SkyLydra
 api-version: 1.16
 
 commands:
+  umfrage:
+  30secumfrage:
   bounty:
   boots:
   rechte:
